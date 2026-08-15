@@ -12,7 +12,7 @@ from urllib.request import urlopen, Request
 
 # ===== 配置 =====
 # 远程更新源 URL（末尾带 /）
-UPDATE_BASE = "https://raw.githubusercontent.com/YOUR_USER/YOUR_REPO/main/"
+UPDATE_BASE = "https://raw.githubusercontent.com/sam1990aj-coder/qb-scripts/main/"
 
 # 需要更新的脚本文件列表
 UPDATE_FILES = [

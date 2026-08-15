@@ -340,6 +340,12 @@ def find_quickbooks_window(index: int):
 
 
 def activate_window(window):
+    try:
+        if getattr(window, "isMinimized", False):
+            window.restore()
+            time.sleep(0.5)
+    except Exception:
+        pass
     window.activate()
     time.sleep(1.5)
 
@@ -357,6 +363,8 @@ def get_window_screenshot():
         return np.array(pyautogui.screenshot())
     left, top = ACTIVE_WINDOW.left, ACTIVE_WINDOW.top
     width, height = ACTIVE_WINDOW.width, ACTIVE_WINDOW.height
+    if left < 0 or top < 0 or width <= 0 or height <= 0:
+        raise RuntimeError(f"窗口位置异常（可能已最小化）: left={left}, top={top}")
     return np.array(pyautogui.screenshot(region=(left, top, width, height)))
 
 
